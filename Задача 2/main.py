@@ -1,7 +1,4 @@
-from random import randint
-import csv
-from numpy import transpose
-
+from Zakharov_functions import *
 letters = [chr(i).upper() for i in range(ord('a'), ord('z') + 1)]
 numbers = [str(i) for i in range(0,10)]
 letters_and_numbers = letters+numbers
@@ -14,50 +11,17 @@ table = [['/', 'A', 'D', 'F', 'G', 'V', 'X'],
          ['V', ' ', ' ', ' ', ' ', ' ', ' '],
          ['X', ' ', ' ', ' ', ' ', ' ', ' ']]
 
-def is_table_filled(table):
-    for i in  range(1, 7):
-        for j in range(1, 7):
-            if table[i][j] == ' ':
-                return False
-    return True
-
-def get_random_letter(letters_and_numbers):
-    n = randint(0, len(letters_and_numbers) - 1)
-
-    n = letters_and_numbers.pop(n)
-    return n
-
-
 while not is_table_filled(table):
     for i in range(1, 7):
         for j in range(1, 7):
             letter = get_random_letter(letters_and_numbers)
             table[i][j] = letter
 
-def write_table_in_file(table, filename):
-    t = list()
-    for i in table:
-        t.append(i)
-    with open(filename, 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile, delimiter=',',
-                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        while t:
-            writer.writerow(t.pop(0))
-    csvfile.close()
-
 write_table_in_file(table, 'table.csv')
 
 print('Какую фразу хотите зашифровать?')
 phrase = list(input())
 indexes = list()
-
-def find_index(table, letter):
-    if letter == ' ':
-        return []
-    for i in range(1, 7):
-        for j in range(1, 7):
-            if table[i][j] == letter.upper():
-                return [table[i][0], table[0][j]]
 
 for i in phrase:
     index = find_index(table, i)
