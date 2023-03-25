@@ -113,16 +113,3 @@ for i in range(len(secret_word)):
         shifr += reshufled_transposed_new_table[i][j]
 print("Зашифрованная фраза:")
 print(shifr)
-
-        
-    
-
-
-
-
-
-
-
-    
-
-
