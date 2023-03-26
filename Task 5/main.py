@@ -1,5 +1,4 @@
 from PIL import Image
-import numpy as np
 
 img = Image.open("C:/Users/Admin/Documents/GitHub/Project-python-tasks/Задача 5/Image.png")
 
